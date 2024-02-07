@@ -20,15 +20,46 @@ public class Enigma{
 
 
     public String decrypt(String message){        
-        //TODO
+        String decryptedString = "";
+        for(int i = 0; i < message.length(); i++){
+            char currentChar = message.charAt(i);
+
+            int outeridx = rotors[2].indexOf(currentChar);
+            char middleChar = rotors[1].charAt(outeridx);
+            
+            int firstidx = rotors[3].indexOf(middleChar);
+            char addChar = rotors[0].charAt(firstidx);
+
+            decryptedString = decryptedString + addChar;
+
+            rotate();
+            
+        }
+
+        return decryptedString;
     }
 
 
     
     public String encrypt(String message){
-        //TODO
+        String encryptedString = "";
 
-    
+        for(int i = 0; i < message.length(); i++){
+            char currentChar = message.charAt(i);
+
+            int firstidx = rotors[0].indexOf(currentChar);
+            char outerchar = rotors[2].charAt(firstidx);
+            
+            int middleidx = rotors[1].indexOf(outerchar);
+            char addChar = rotors[2].charAt(middleidx);
+
+            encryptedString = encryptedString + addChar;
+
+            rotate();
+        }
+        return encryptedString;
+
+    }
     private void rotate(){
         if(rotors[0].rotate()){
             if(rotors[1].rotate()){
