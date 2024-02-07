@@ -27,7 +27,7 @@ public class Enigma{
             int outeridx = rotors[2].indexOf(currentChar);
             char middleChar = rotors[1].charAt(outeridx);
             
-            int firstidx = rotors[3].indexOf(middleChar);
+            int firstidx = rotors[2].indexOf(middleChar);
             char addChar = rotors[0].charAt(firstidx);
 
             decryptedString = decryptedString + addChar;
